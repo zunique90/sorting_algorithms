@@ -21,25 +21,28 @@ void swap_ints(int *a, int *b)
  * @size: size
  * Return: i
  */
-int lomuto_partition(int *arr, int first, int last, size_t size)
+int lomuto_partition(int *arr, size_t size, int first, int last)
 {
-	int pivot = arr[last];
-	int i = first;
-	int j;
+	int *pivot = arr + last;
+	int i, j;
 
-	for (j = first; j < last; j++)
+	for (j = i = first; j < last; j++)
 	{
-		if (arr[j] <= pivot)
+		if (arr[j] < *pivot)
 		{
-			swap_ints(&arr[i], &arr[j]);
-			if (i != j)
+			if (i < j)
+			{
+				swap_ints(arr + j, arr + i);
 				print_array(arr, size);
+			}
 			i++;
 		}
 	}
-	swap_ints(&arr[i], &arr[last]);
-	if (i != j)
+	if (arr[i] > *pivot)
+	{
+		swap_ints(arr + i, pivot);
 		print_array(arr, size);
+	}
 	return (i);
 }
 
@@ -50,15 +53,15 @@ int lomuto_partition(int *arr, int first, int last, size_t size)
  * @last: last element
  * @size: size
  */
-void lomuto_sort(int *arr, int first, int last, size_t size)
+void lomuto_sort(int *arr, size_t size, int first, int last)
 {
 	int pivot;
 
-	if (first < last)
+	if (last - first > 0)
 	{
-		pivot = lomuto_partition(arr, first, last, size);
-		lomuto_sort(arr, first, pivot - 1, size);
-		lomuto_sort(arr, pivot + 1, last, size);
+		pivot = lomuto_partition(arr, size, first, last);
+		lomuto_sort(arr, size, first, pivot - 1);
+		lomuto_sort(arr, size, pivot + 1, last);
 	}
 }
 
