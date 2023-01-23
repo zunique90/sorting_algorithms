@@ -19,7 +19,7 @@ void swap_ints(int *a, int *b)
  * @first: first element
  * @last: last element
  * @size: size
- * Return: i
+ * Return: i - index of the final partition
  */
 int lomuto_partition(int *arr, size_t size, int first, int last)
 {
