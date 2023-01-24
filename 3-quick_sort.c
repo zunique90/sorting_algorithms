@@ -16,8 +16,8 @@ void swap_ints(int *a, int *b)
 /**
  * lomuto_partition - partition an array around pivot
  * @arr: the array to be partitioned
- * @first: first element
- * @last: last element
+ * @first: index of first element
+ * @last: index of last element
  * @size: size
  * Return: i - index of the final partition
  */
@@ -49,8 +49,8 @@ int lomuto_partition(int *arr, size_t size, int first, int last)
 /**
  * lomuto_sort - sorts a partition of the array
  * @arr: array
- * @first: first element
- * @last: last element
+ * @first: first index of the partition to be sorted
+ * @last: last index of the partition to be sorted
  * @size: size
  */
 void lomuto_sort(int *arr, size_t size, int first, int last)
